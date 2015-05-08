@@ -16,7 +16,7 @@ rss._StaticBody = cc.Node.extend({
     },
 
     init: function() {
-        cc.log("_StaticBody.init ...")
+        rss.log("_StaticBody.init ...")
         this._super()
     },
 
@@ -28,25 +28,30 @@ rss._StaticBody = cc.Node.extend({
     removeFromSpace: function(space) {
         var shape = this.getShape()
         if (shape) {
+            rss.log("REMOVING SHAPE")
             space.removeShape(shape)
         }
 
         var body = this.getBody()
         if (body) {
+            rss.log("REMOVING BODY")
             space.removeBody(body)
             space.constraints.forEach(function(constr) {
+                rss.log("REMOVING CONSTRAINT")
                 if ((constr.a == body) || (constr.b == body)) {
-                    cc.log("REMOVING CONSTRAINT")
                     space.removeConstraint(constr)
                 }
             })
         }
 
-        var draw = this.getDraw()
-        if (draw) {
-            draw.clear()
-            draw.removeFromParent(true)
+        if (this.r.draw) {
+            rss.log("DRAW NODE")
+            this.r.shouldDraw = false
+            this.r.draw.removeFromParent()
         }
+
+        rss.log("REMOVING FROM PARENT")
+        this.removeFromParent()
     },
 
     getStartPos: function() {

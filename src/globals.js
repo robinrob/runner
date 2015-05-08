@@ -8,6 +8,8 @@ rss.physics = rss.chipmunk
 rss.g = 100
 rss.gravity = -500
 
+rss.twoPI = 2 * Math.PI
+
 rss.keys = []
 
 rss.colors = {
@@ -125,10 +127,11 @@ rss.game.stateNames = {
 
 rss.levels = [
     {
-        radius: 2000,
-        offset: 150,
-        //radius: 800,
+        //radius: 2000,
         //offset: 150,
-        omega: 0.15
+        //omega: 0.40
+        radius: 400,
+        offset: 150,
+        omega: 1.0
     }
 ]

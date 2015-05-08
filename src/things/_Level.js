@@ -48,10 +48,11 @@ var _Level = rss._CompositeDynamicBody.extend({
         var fromAng = this.end + gap
 
         var base = this.addSegment(gap, width, 20)
+        base.setShouldPersist(true)
         base.setCollisionType(rss.tag.landingPad)
-        //liftoffSensor.setSensor(true)
 
         finishSensor = this.addSegment(gap, width, rss.height() * 2)
+        finishSensor.setShouldPersist(true)
         finishSensor.setCollisionType(rss.tag.startFinish)
         finishSensor.setSensor(true)
 

@@ -342,3 +342,7 @@ rss.scaleVerts = function(verts, scale) {
     })
     return newVerts
 }
+
+rss.log = function(str) {
+    cc.log("COCOS: " + str)
+}

@@ -152,7 +152,6 @@ var GameScene = rss.BaseScene.extend({
             cc.director.runScene(new GameScene())
         }
 
-        // Simulation cpSpaceAddPostStepCallback
         var that = this
         this.r.objectsToRemove.forEach(function(obj) {
             obj.removeFromSpace(rss.game.space)

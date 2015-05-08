@@ -13,7 +13,20 @@ rss.RectBody = rss._DynamicBody.extend({
         // shape
         this.r.shape = new cp.BoxShape(this.r.body, this.r.size.width, this.r.size.height)
 
+        this.r.draw = new cc.DrawNode()
+        this.addChild(this.r.draw)
+
         return this
+    },
+
+    draw: function() {
+        this.r.draw.drawRect(
+            rss.sub(this.getPos(), cc.p(this.getWidth() / 2, this.getHeight() / 2)),
+            rss.add(this.getPos(), cc.p(this.getWidth() / 2, this.getHeight() / 2)),
+            rss.setAlpha(this.getColor(), 255),
+            rss.ui.linewidth,
+            rss.setAlpha(this.getColor(), 255)
+        )
     }
 })
 

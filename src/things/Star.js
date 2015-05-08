@@ -1,4 +1,4 @@
-var Star = rss.CircBody.extend({
+var Star = rss.RectBody.extend({
     ctor: function(args) {
         cc.log("Spaceship.ctor ...")
         //args.spriteCfg = {
@@ -12,8 +12,11 @@ var Star = rss.CircBody.extend({
         //args.size = cc.size(rss.star.width, rss.star.height)
         args.radius = rss.star.width / 2
         args.mass = rss.star.mass
+        args.size = cc.size(rss.star.width, rss.star.width)
 
         this._super(args)
+
+        this.r.shouldDraw = true
     },
 
     init: function() {
@@ -33,13 +36,11 @@ var Star = rss.CircBody.extend({
         return this.r.constraints
     },
 
-    draw: function() {
-        if (this.r.draw) {
-            this.r.draw.clear()
-            this.drawCircle()
-            this.drawDot()
-        }
-    },
+    //draw: function() {
+    //    //this.drawCircle()
+    //    //this.drawDot()
+    //    this.drawSquare()
+    //},
 
     drawCircle: function() {
         this.r.draw.drawCircle(
@@ -62,6 +63,7 @@ var Star = rss.CircBody.extend({
     },
 
     update: function() {
+        this.r.draw.clear()
         this.draw()
     }
 })

@@ -17,8 +17,8 @@ rss.CircSegmentBody = rss._DynamicBody.extend({
 
         this.r.space = args.space
 
-        //this.r.omega = args.omega
-        //this.r.ang = 0
+        this.r.shouldPersist = false
+        this.r.shouldDraw = true
     },
 
     init: function() {
@@ -119,38 +119,41 @@ rss.CircSegmentBody = rss._DynamicBody.extend({
         return this.r.startAngle
     },
 
-    draw: function(dt) {
-        this.r.draw.clear()
-
-        var ang = this.getAngle()
-        var rightEdgeAng = rss.toDeg((this.getStartAngle() - (ang + this.getWidth() / 2)))
-        var leftEdgeAng = rss.toDeg((this.getStartAngle() - (ang - this.getWidth() / 2)))
-        var limit = 20
-        if ((rightEdgeAng < limit) && (leftEdgeAng > (-1 * limit))) {
-            //if (this.r.isInSpace == false) {
-            //    cc.log("ADDING TO SPACE")
-            //    this.addToSpace(rss.game.space)
-            //    this.setAngle(this.r.ang)
-            //    this.r.isInSpace = true
-            //}
-            this.r.draw.setPosition(this.getPos())
-            this.r.draw.drawPoly(
-                this.getVerts(false).reverse(),
-                rss.setAlpha(this.getColor(), 128),
-                rss.ui.linewidth / 2.0,
-                rss.setAlpha(this.getColor(), 255)
-            )
-            this.r.draw.setAnchorPoint(0.5, 0)
-            this.r.draw.setRotation(-1 * rss.toDeg(this.getAngle()))
-        }
-        //else if (this.r.isInSpace == true) {
-        //    this.removeFromSpace(rss.game.space)
-        //    this.r.isInSpace = false
-        //}
+    setShouldPersist: function(bool) {
+        this.r.shouldPersist = bool
     },
 
-    update: function(dt) {
-        this.draw(dt)
+    getShouldPersist: function() {
+        return this.r.shouldPersist
+    },
+
+    draw: function() {
+        this.r.draw.setPosition(this.getPos())
+        this.r.draw.drawPoly(
+            this.getVerts(false).reverse(),
+            rss.setAlpha(this.getColor(), 128),
+            rss.ui.linewidth / 2.0,
+            rss.setAlpha(this.getColor(), 255)
+        )
+        this.r.draw.setAnchorPoint(0.5, 0)
+        this.r.draw.setRotation(-1 * rss.toDeg(this.getAngle()))
+    },
+
+    update: function() {
+        this.r.draw.clear()
+
+        if (this.getShouldPersist()) {
+            this.draw()
+        }
+        else {
+            var ang = this.getAngle() % rss.twoPI
+            var rightEdgeAng = rss.toDeg((this.getStartAngle() - (ang + this.getWidth() / 2)))
+            var leftEdgeAng = rss.toDeg((this.getStartAngle() - (ang - this.getWidth() / 2)))
+            var limit = 20
+            if ((rightEdgeAng < limit) && (leftEdgeAng > (-1 * limit))) {
+                this.draw()
+            }
+        }
     }
 })
 

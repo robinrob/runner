@@ -114,6 +114,11 @@ rss.CircBody = rss._DynamicBody.extend({
                 this.getColor()
             )
         }
+    },
+
+    draw: function() {
+        this.drawDot()
+        this.drawCircle()
     }
 })
 

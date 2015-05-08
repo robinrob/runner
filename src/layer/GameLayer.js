@@ -3,9 +3,9 @@ var GameLayer = rss.BaseLayer.extend({
         cc.log("GameLayer.ctor ...")
         this._super();
 
-        //this._debugNode = new cc.PhysicsDebugNode(rss.game.space);
-        //this._debugNode.setVisible(true);
-        //this.addChild(this._debugNode, 10);
+        this._debugNode = new cc.PhysicsDebugNode(rss.game.space);
+        this._debugNode.setVisible(true);
+        this.addChild(this._debugNode, 10);
 
         this.constructListeners()
         cc.log("GameLayer.ctor")
@@ -106,17 +106,17 @@ var GameLayer = rss.BaseLayer.extend({
         this.r.player = player
         rss.player.state = rss.player.states.landed
 
-        //var top = rss.top().y + 200
-        //var grooveHeight = top - worldTop.y
-        //var groove = rss.StaticRectBody.create({
-        //    pos: cc.p(rss.center().x, top - grooveHeight / 2),
-        //    size: cc.size(0, grooveHeight)
-        //}).addToSpace(rss.game.space)
-        //groove.setJointPs([cc.p(0, groove.getSize().height / 2), cc.p(0, -1 * groove.getSize().height / 2)])
-        ////groove.setGroup(rss.tag.player)
-        //groove.setSensor(true)
-        //
-        //rss.game.space.addConstraints(rss.grooveJoint(groove, this.getPlayer()))
+        var top = rss.top().y
+        var grooveHeight = top - worldTop.y - 5
+        var groove = rss.StaticRectBody.create({
+            pos: cc.p(rss.center().x, worldTop.y + grooveHeight / 2),
+            size: cc.size(0, grooveHeight)
+        }).addToSpace(rss.game.space)
+        groove.setJointPs([cc.p(0, groove.getSize().height / 2), cc.p(0, -1 * groove.getSize().height / 2)])
+        groove.setGroup(rss.tag.player)
+        groove.setSensor(true)
+
+        rss.game.space.addConstraints(rss.grooveJoint(groove, this.getPlayer()))
     },
     
     getLevel: function() {
