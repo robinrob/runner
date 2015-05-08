@@ -26,26 +26,28 @@ rss._StaticBody = cc.Node.extend({
     },
 
     removeFromSpace: function(space) {
+        var body = this.getBody()
+        if (typeof body == "object") {
+            //rss.log("CHECKING CONSTRAINTS")
+            //space.constraints.forEach(function(constr) {
+            //    //rss.log("CHECKING CONSTRAINT")
+            //    if ((constr.a == body) || (constr.b == body)) {
+            //        rss.log("REMOVING CONSTRAINT")
+            //        space.removeConstraint(constr)
+            //    }
+            //})
+            rss.log("REMOVING BODY")
+            space.removeBody(body)
+        }
+
         var shape = this.getShape()
-        if (shape) {
+        if (typeof shape == "object") {
             rss.log("REMOVING SHAPE")
             space.removeShape(shape)
         }
 
-        var body = this.getBody()
-        if (body) {
-            rss.log("REMOVING BODY")
-            space.removeBody(body)
-            space.constraints.forEach(function(constr) {
-                rss.log("REMOVING CONSTRAINT")
-                if ((constr.a == body) || (constr.b == body)) {
-                    space.removeConstraint(constr)
-                }
-            })
-        }
-
-        if (this.r.draw) {
-            rss.log("DRAW NODE")
+        if (typeof this.r.draw == "object") {
+            rss.log("REMOVING DRAW NODE")
             this.r.shouldDraw = false
             this.r.draw.removeFromParent()
         }

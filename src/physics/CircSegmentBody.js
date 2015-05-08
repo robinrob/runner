@@ -15,8 +15,6 @@ rss.CircSegmentBody = rss._DynamicBody.extend({
 
         this.r.startAngle = args.startAngle
 
-        this.r.space = args.space
-
         this.r.shouldPersist = false
         this.r.shouldDraw = true
     },

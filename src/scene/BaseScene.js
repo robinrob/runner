@@ -3,9 +3,5 @@ rss.BaseScene = cc.Scene.extend({
         this._super()
 
         this.r = {}
-    },
-
-    getSpace: function() {
-        return this.r.space
     }
 })

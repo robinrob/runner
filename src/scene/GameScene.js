@@ -153,8 +153,12 @@ var GameScene = rss.BaseScene.extend({
         }
 
         var that = this
+        rss.log("REMOVING STARS ...")
         this.r.objectsToRemove.forEach(function(obj) {
+            rss.log("REMOVING STAR ...")
             obj.removeFromSpace(rss.game.space)
+            rss.log("REMOVED STAR")
         })
+        rss.log("FINISHED REMOVING STARS")
     }
 })

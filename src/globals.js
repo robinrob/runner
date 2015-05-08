@@ -127,11 +127,11 @@ rss.game.stateNames = {
 
 rss.levels = [
     {
-        //radius: 2000,
-        //offset: 150,
-        //omega: 0.40
-        radius: 400,
+        radius: 2000,
         offset: 150,
-        omega: 1.0
+        omega: 0.20
+        //radius: 400,
+        //offset: 150,
+        //omega: 1.0
     }
 ]

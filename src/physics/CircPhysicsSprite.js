@@ -27,10 +27,8 @@ rss.CircPhysicsSprite = rss._DynamicBody.extend({
 
         this.r.body = new cp.Body(this.r.mass, cp.momentForCircle(this.r.mass, 0, this.r.radius, cp.v(0,0)))
         this.r.body.setPos(this.r.startPos)
-        this.r.space.addBody(this.r.body)
 
         this.r.shape = new cp.CircleShape(this.r.body, this.r.radius, cp.v(0, 0))
-        this.r.space.addShape(this.r.shape)
     },
 
     initBox2D: function() {

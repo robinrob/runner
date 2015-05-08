@@ -1,9 +1,9 @@
 {
     "project_type": "javascript",
 
-    "debugMode" : 1,
+    "debugMode" : 0,
     "showFPS" : true,
-    "frameRate" : 60,
+    "frameRate" : 30,
     "id" : "gameCanvas",
     "renderMode" : 1,
     "engineDir":"frameworks/cocos2d-html5",
@@ -28,10 +28,8 @@
         "src/physics/ConeBody.js",
         "src/physics/CircSegmentBody.js",
 
-        "src/things/Man.js",
         "src/things/Spaceship.js",
         "src/things/Star.js",
-        "src/things/Box.js",
         "src/things/CompositeSprite.js",
         "src/things/World.js",
         "src/things/_Level.js",

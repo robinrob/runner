@@ -39,7 +39,7 @@ cp.Vect.prototype.subY = function(dy) {
     return cp.v(this.x, this.y - dy)
 }
 
-rss.log = function(obj) {
+rss.logO = function(obj) {
     for (i in obj) {
         cc.log(i)
     }

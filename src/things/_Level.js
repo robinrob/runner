@@ -173,7 +173,7 @@ var _Level = rss._CompositeDynamicBody.extend({
             startAngle: ang,
             offset: this.START_ANGLE - ang,
             mass: rss.item.mass,
-            space: this.r.space,
+            space: rss.game.space,
             omega: this.cfg.omega
         })
         item.setLocalZOrder(-10)

@@ -23,7 +23,6 @@ var GameOverLayer = rss.BaseLayer.extend({
     },
 
     onPlay : function(){
-        cc.log("MenuLayer.onPlay ...")
         cc.director.resume()
         cc.director.runScene(new GameScene());
     }

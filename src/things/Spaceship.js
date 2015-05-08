@@ -85,7 +85,7 @@ rss.Spaceship = rss.RectPhysicsSprite.extend({
             if (this.fuel > 0) {
                 rss.keys.up += dt
                 this.applyImpulse(cp.v(0, Math.min(this.getMass() * rss.keys.up * rss.spaceship.acc, rss.spaceship.maxImp)))
-                this.decFuel()
+                //this.decFuel()
             }
         }
         else {

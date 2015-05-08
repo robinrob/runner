@@ -3,9 +3,5 @@ rss.BaseLayer = cc.Layer.extend({
         this._super();
 
         this.r = {}
-    },
-
-    getSpace: function() {
-        return this.r.space
     }
 });
