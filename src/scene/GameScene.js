@@ -13,7 +13,6 @@ var GameScene = rss.BaseScene.extend({
     
     initPhysics: function() {
         rss.game.space = new cp.Space()
-        //rss.game.space.gravity = cc.p(0, rss.gravity)
         
         rss.game.space.addCollisionHandler(
             rss.tag.player,
@@ -45,7 +44,7 @@ var GameScene = rss.BaseScene.extend({
             this.collisionStartFinishBegin.bind(this),
             null,
             null,
-            this.collisionStartFinishSeparate.bind(this))
+            null)
 
         rss.game.space.addCollisionHandler(
             rss.tag.player,
@@ -99,8 +98,10 @@ var GameScene = rss.BaseScene.extend({
 
     collisionLandingPadSeparate: function() {
         cc.log("collisionLandingPad.separate")
-        rss.player.state = rss.player.states.flying
-        rss.world.state = rss.world.states.moving
+        if ((rss.game.state == rss.game.states.touched) || (rss.game.state == rss.game.states.started)) {
+            rss.player.state = rss.player.states.flying
+            rss.world.state = rss.world.states.moving
+        }
     },
 
     collisionStartFinishBegin: function() {
@@ -111,14 +112,7 @@ var GameScene = rss.BaseScene.extend({
             cc.log("GAME OVER")
             this.addChild(GameOverLayer.create())
         }
-    },
-
-    collisionStartFinishSeparate: function() {
-        cc.log("collisionStartFinish.separate")
-        var angle = this.getChildByTag(rss.tag.gameLayer).getLevel().getWorld().getAngle()
-        if (angle > rss.landingPad.angle / 2) {
-            rss.game.state = rss.game.states.started
-        }
+        return true
     },
 
     collisionStarBegin: function(arbiters) {
@@ -142,6 +136,7 @@ var GameScene = rss.BaseScene.extend({
     },
 
     update: function(dt) {
+        cc.log("state: " + rss.game.stateNames[rss.game.state])
         this.r.objectsToRemove = []
 
         if (!rss.pauseInput()) {
@@ -153,12 +148,8 @@ var GameScene = rss.BaseScene.extend({
         }
 
         var that = this
-        rss.log("REMOVING STARS ...")
         this.r.objectsToRemove.forEach(function(obj) {
-            rss.log("REMOVING STAR ...")
             obj.removeFromSpace(rss.game.space)
-            rss.log("REMOVED STAR")
         })
-        rss.log("FINISHED REMOVING STARS")
     }
 })

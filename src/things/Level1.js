@@ -1,31 +1,24 @@
 var Level1 = _Level.extend({
     addItems: function() {
-        this.end = rss.toRad(-2.5)
+        this.end = rss.toRad(-1.0 * rss.landingPad.angle / 2)
         this.addStartFinishPad(0, rss.landingPad.angle)
 
-        this.addObstacle(2, 2, 10)
-        this.addStar(-1, 100)
-        this.addObstacle(2, 2, 10)
-        this.addStar(-1, 110)
-        this.addObstacle(2, 2, 10)
-        this.addStar(-1, 120)
-        this.addObstacle(2, 3, 10)
-        this.addStar(-1, 150)
-        this.addObstacle(2, 3, 10)
-        this.addStar(-1, 140)
+        this.addObstacleWithStar(2, 5, 30)
+        this.addObstacleWithStar(2, 2, 40)
+        this.addObstacleWithStar(2, 2, 50)
+        this.addObstacleWithStar(2, 3, 60)
+        this.addObstacleWithStar(2, 3, 70)
+
         this.addFuelStrip(2, 10, 20)
 
         this.addFloatingObstacle(4, 2, 30, 300)
-        this.addObstacle(4, 2, 100, 150)
-        //this.addStar(-1, 170)
+        this.addObstacleWithStar(4, 2, 100, 150)
 
         this.addFloatingObstacle(0, 2, 30, 300)
-        this.addObstacle(0, 2, 100, 150)
-        //this.addStar(-1, 170)
+        this.addObstacleWithStar(0, 2, 100, 150)
 
         this.addFloatingObstacle(0, 2, 30, 300)
-        this.addObstacle(0, 2, 100, 150)
-        //this.addStar(-1, 170)
+        this.addObstacleWithStar(0, 2, 100, 150)
 
         this.addObstacle(8, 2, 120)
         this.addObstacle(2, 2, 100)

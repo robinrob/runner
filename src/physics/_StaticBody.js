@@ -36,23 +36,19 @@ rss._StaticBody = cc.Node.extend({
             //        space.removeConstraint(constr)
             //    }
             //})
-            rss.log("REMOVING BODY")
             space.removeBody(body)
         }
 
         var shape = this.getShape()
         if (typeof shape == "object") {
-            rss.log("REMOVING SHAPE")
             space.removeShape(shape)
         }
 
         if (typeof this.r.draw == "object") {
-            rss.log("REMOVING DRAW NODE")
             this.r.shouldDraw = false
             this.r.draw.removeFromParent()
         }
 
-        rss.log("REMOVING FROM PARENT")
         this.removeFromParent()
     },
 

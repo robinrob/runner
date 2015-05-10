@@ -130,8 +130,8 @@ rss.levels = [
         radius: 2000,
         offset: 150,
         omega: 0.20
-        //radius: 400,
+        //radius: 800,
         //offset: 150,
-        //omega: 1.0
+        //omega: 0.4
     }
 ]

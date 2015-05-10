@@ -128,15 +128,22 @@ var GameLayer = rss.BaseLayer.extend({
     },
 
     update: function(dt) {
+        var angle = rss.toDeg(this.getLevel().getWorld().getAngle())
+
         if (rss.upInput() && (rss.game.state == rss.game.states.ready)) {
+            rss.game.state = rss.game.states.touched
             this.getParent().getChildByTag(rss.tag.statsLayer).updateMsg("")
         }
-        rss.game.space.gravity = rss.mult(rss.unitVecFromTo(this.getLevel().getWorld().getPos(), this.getPlayer().getPos()), rss.gravity)
+        else if (angle > rss.landingPad.angle / 2.0) {
+            rss.game.state = rss.game.states.started
+        }
 
         this.getPlayer().update(dt)
         this.getLevel().update(dt)
         this.getParent().getChildByTag(rss.tag.statsLayer).updateFuelMeter(this.getPlayer().getFuel())
         this.getParent().getChildByTag(rss.tag.statsLayer).updateDistanceMeter(rss.toDeg(this.getLevel().getWorld().getAngle()))
+
+        rss.game.space.gravity = rss.mult(rss.unitVecFromTo(this.getLevel().getWorld().getPos(), this.getPlayer().getPos()), rss.gravity)
     }
 })
 

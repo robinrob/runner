@@ -51,6 +51,10 @@ var _Level = rss._CompositeDynamicBody.extend({
         base.setShouldPersist(true)
         base.setCollisionType(rss.tag.landingPad)
 
+        // Required for some reason to
+        var base2 = this.addSegment(gap, width, 20)
+        base2.setShouldPersist(true)
+
         finishSensor = this.addSegment(gap, width, rss.height() * 2)
         finishSensor.setShouldPersist(true)
         finishSensor.setCollisionType(rss.tag.startFinish)
@@ -100,7 +104,7 @@ var _Level = rss._CompositeDynamicBody.extend({
 
     addObstacleWithStar: function(gap, width, height) {
         this.addObstacle(gap, width, height)
-        this.addStar(width / 2, height + 70)
+        this.addStar(-1 * width / 2, height + 70)
     },
 
     /* Does not increment this.end */
@@ -223,7 +227,7 @@ var _Level = rss._CompositeDynamicBody.extend({
     },
 
     update: function(dt) {
-        if (rss.world.state == rss.world.states.moving) {
+        if ((rss.world.state == rss.world.states.moving) && (rss.game.state == rss.game.states.touched)) {
             this.getWorld().setAngVel(this.cfg.omega)
         }
         else if (rss.world.state == rss.world.states.stopped) {
